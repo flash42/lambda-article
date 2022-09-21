@@ -7,5 +7,6 @@
    - [ ] Test some ideas to visualize Lambda calculus -> JavaScript translation
    - [ ] "Copy paste" blogpost to Ghost
    - [ ] Create document in Ghost with interactive elements
+   - [ ] Consider Gatsby / embed everything into Ghost?
    - [ ] Write README
    - [ ] Apply
