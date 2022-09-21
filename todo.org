@@ -1,8 +1,16 @@
 * Draft task list
-   - [ ] Create an empty react app
-   - [ ] Understand language integration demo for Lezer
-   - [ ] Add minimal change that helps lambda calculus syntax highlighter
+   - [X] Create an empty react app
+   - [X] Understand language integration demo for Lezer
+     - https://github.com/nextjournal/lezer-clojure/blob/main/src/clojure.grammar
+     - https://github.com/lezer-parser/json/blob/main/src/json.grammar
+     - https://github.com/lezer-parser/json/blob/main/src/highlight.js
+   - [X] Add CodeMirror to application
+   - [X] Add custom grammar / syntax highlighter to CodeMirror
+   - [X] Add minimal change that helps lambda calculus syntax highlighter
+   - [ ] Write simple Lambda calculus grammar
    - [ ] Write simple Lambda calculus highlighter
+   - [ ] Add lambda sign to editor?
+   - [ ] Try out JavaScript interpreter
    - [ ] Think about useful features for the article
    - [ ] Test some ideas to visualize Lambda calculus -> JavaScript translation
    - [ ] "Copy paste" blogpost to Ghost
