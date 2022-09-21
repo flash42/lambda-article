@@ -1,0 +1,11 @@
+* Draft task list
+   - [ ] Create an empty react app
+   - [ ] Understand language integration demo for Lezer
+   - [ ] Add minimal change that helps lambda calculus syntax highlighter
+   - [ ] Write simple Lambda calculus highlighter
+   - [ ] Think about useful features for the article
+   - [ ] Test some ideas to visualize Lambda calculus -> JavaScript translation
+   - [ ] "Copy paste" blogpost to Ghost
+   - [ ] Create document in Ghost with interactive elements
+   - [ ] Write README
+   - [ ] Apply
