@@ -1,8 +1,7 @@
 import {parser} from "./parser"
 import {continuedIndent, indentNodeProp, foldNodeProp, foldInside, LRLanguage, LanguageSupport} from "@codemirror/language"
 
-/// A language provider that provides JSON parsing.
-export const jsonLanguage = LRLanguage.define({
+export const lambdaCalculusLanguage = LRLanguage.define({
   parser: parser.configure({
     props: [
       indentNodeProp.add({
@@ -15,14 +14,12 @@ export const jsonLanguage = LRLanguage.define({
     ]
   }),
   languageData: {
-    closeBrackets: {brackets: ["[", "{", '"']},
+    closeBrackets: {brackets: ["("]},
     indentOnInput: /^\s*[\}\]]$/
   }
 })
 
 /// JSON language support.
-export function json() {
-  return new LanguageSupport(jsonLanguage)
+export function lambdaCalculus() {
+  return new LanguageSupport(lambdaCalculusLanguage)
 }
-
-export {jsonParseLinter} from "./lint"

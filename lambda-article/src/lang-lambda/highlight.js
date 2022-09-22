@@ -1,12 +1,8 @@
 import {styleTags, tags as t} from "@lezer/highlight"
 
-export const jsonHighlighting = styleTags({
-  String: t.string,
-  Number: t.number,
-  "True False": t.bool,
-  PropertyName: t.propertyName,
-  Null: t.null,
-  ",": t.separator,
-  "[ ]": t.squareBracket,
-  "{ }": t.brace
+export const lambdaCalculusHighlighting = styleTags({
+  "λ": t.keyword,
+  Dot: t.separator,
+  Rparen: t.paren,
+  Lparen: t.paren
 })

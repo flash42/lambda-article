@@ -13,8 +13,8 @@
    - [ ] Try out JavaScript interpreter
    - [ ] Think about useful features for the article
    - [ ] Test some ideas to visualize Lambda calculus -> JavaScript translation
-   - [ ] "Copy paste" blogpost to Ghost
-   - [ ] Create document in Ghost with interactive elements
-   - [ ] Consider Gatsby / embed everything into Ghost?
+   - [ ] Add widget button
+   - [ ] Add text button
+   - [ ] Save document
    - [ ] Write README
    - [ ] Apply

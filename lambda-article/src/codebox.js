@@ -1,6 +1,5 @@
 import CodeMirror from '@uiw/react-codemirror';
-import { json } from './lang-lambda/json';
-// import { json } from '@codemirror/lang-json';
+import { lambdaCalculus } from './lang-lambda/lambdaCalculus';
 import React from 'react';
 
 
@@ -41,7 +40,7 @@ function Codebox() {
         <CodeMirror
         value={starterCode}
         height="200px"
-        extensions={[json({ jsx: true })]}
+        extensions={[lambdaCalculus()]}
         onChange={onChange}
       />
     );

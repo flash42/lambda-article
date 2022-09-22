@@ -1,0 +1,25 @@
+@top Script { (newline | term)+ }
+
+
+term { application | lambda lcid dot term }
+application { atom } // application | atom
+atom { lparen term rparen | lcid }
+
+@tokens {
+  lparen { '(' }
+  rparen { ')' }
+  lambda { 'λ' }
+  dot { '.' }
+  lcid { @asciiLetter }
+
+  newline[@export] { $[\r\n\u2028\u2029] }
+
+  whitespace { $[ \t] }
+
+}
+
+@skip { whitespace }
+
+@external propSource lambdaCalculusHighlighting from "./highlight"
+
+@detectDelim
