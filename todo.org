@@ -7,14 +7,18 @@
    - [X] Add CodeMirror to application
    - [X] Add custom grammar / syntax highlighter to CodeMirror
    - [X] Add minimal change that helps lambda calculus syntax highlighter
-   - [ ] Write simple Lambda calculus grammar
-   - [ ] Write simple Lambda calculus highlighter
-   - [ ] Add lambda sign to editor?
-   - [ ] Try out JavaScript interpreter
-   - [ ] Think about useful features for the article
-   - [ ] Test some ideas to visualize Lambda calculus -> JavaScript translation
-   - [ ] Add widget button
-   - [ ] Add text button
-   - [ ] Save document
+   - [X] Write simple Lambda calculus grammar
+   - [X] Write simple Lambda calculus highlighter
+   - [X] Think about useful features for the article
+   - [ ] Add codebox button
+   - [ ] Add textbox button
+   - [ ] Save document as JSON
+   - [ ] Render document from JSON
+   - [ ] Add lambda sign to editor as shortcut
+   - [ ] Deploy to cdn
    - [ ] Write README
    - [ ] Apply
+   - [ ] Learn LR parsing for Lezer
+   - [ ] Learn resolving shift-reduce issues in Lezer
+   - [ ] Try out JavaScript interpreter
+   - [ ] Figure out publication workflow

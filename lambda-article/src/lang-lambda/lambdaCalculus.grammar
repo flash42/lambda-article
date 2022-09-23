@@ -1,14 +1,19 @@
-@top Script { (newline | term)+ }
+@top Script { (newline term)+ }
 
 
-term { application | lambda lcid dot term }
-application { atom } // application | atom
+term { application | Lambda lcid Dot term }
+// TODO solve shift-reduce problem: application { application | atom }
+application { atom }
 atom { lparen term rparen | lcid }
+
+Lambda { lambda }
+
+Dot { dot }
 
 @tokens {
   lparen { '(' }
   rparen { ')' }
-  lambda { 'λ' }
+  lambda { "λ" }
   dot { '.' }
   lcid { @asciiLetter }
 

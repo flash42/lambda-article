@@ -3,15 +3,15 @@ import {LRParser} from "@lezer/lr"
 import {lambdaCalculusHighlighting} from "./highlight"
 export const parser = LRParser.deserialize({
   version: 14,
-  states: "!pOVQPOOOYQPO'#CdOOQO'#Cd'#CdOeQPO'#CcOOQO'#C^'#C^QVQPOOOOQO'#Cc'#CcOjQPO,59OOoQPO,58}OOQO-E6[-E6[OOQO1G.j1G.jOYQPO1G.iOOQO7+$T7+$T",
-  stateData: "t~OTOS~OUSOXPOZQO[RO~OZWO~OYYO~O]ZO~O",
-  goto: "pXPPYPPPP`jQTORXTSSOTQVPR[ZXUOPTZ",
-  nodeNames: "⚠ Script",
-  maxTerm: 13,
+  states: "#SOVQPOOO[QPO'#C`QVQPOOO[QPO'#CfOOQO'#Cf'#CfOOQO'#C^'#C^OgQPO'#CeOOQO,58z,58zOOQO'#Ce'#CeOOQO-E6^-E6^OlQPO,59QOqQPO,59POOQO1G.l1G.lOOQO'#C_'#C_O[QPO1G.kOOQO7+$V7+$V",
+  stateData: "v~OVOS~OWPO~OZRO]SO^TO~O]ZO~O[[O~O_]O~O",
+  goto: "xZPP[adPPPPjsVUPR^R^ZQQORXQQVPQYRR_^VWPR^",
+  nodeNames: "⚠ Script Lambda Dot",
+  maxTerm: 15,
   propSources: [lambdaCalculusHighlighting],
   skippedNodes: [0],
   repeatNodeCount: 1,
-  tokenData: "!l~R[XYwYZ|]^|pqwxy!Ryz!W!O!P!]!c!}!b#T#o!b5s5t!g$I|$I}|$I}$JO|~|OT~~!ROU~~!WOX~~!]OY~~!bO]~~!gOZ~~!lO[~",
+  tokenData: "!l~R[XYwYZ|]^|pqwxy!Ryz!W!O!P!]!c!}!b#T#o!b5s5t!g$I|$I}|$I}$JO|~|OV~~!ROW~~!WOZ~~!]O[~~!bO_~~!gO]~~!lO^~",
   tokenizers: [0],
   topRules: {"Script":[0,1]},
   tokenPrec: 0
