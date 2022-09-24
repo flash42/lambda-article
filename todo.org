@@ -10,6 +10,7 @@
    - [X] Write simple Lambda calculus grammar
    - [X] Write simple Lambda calculus highlighter
    - [X] Think about useful features for the article
+   - [X] Try textbox
    - [ ] Add codebox button
    - [ ] Add textbox button
    - [ ] Save document as JSON
