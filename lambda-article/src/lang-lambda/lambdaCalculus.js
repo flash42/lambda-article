@@ -15,7 +15,7 @@ export const lambdaCalculusLanguage = LRLanguage.define({
   }),
   languageData: {
     closeBrackets: {brackets: ["("]},
-    indentOnInput: /^\s*[\}\]]$/
+    indentOnInput: /^\s*[}\]]$/
   }
 })
 
