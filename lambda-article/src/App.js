@@ -13,11 +13,11 @@ function App() {
       }}
     >
       <Flex mx={50}>
-        <Box width={1 / 2} px={2}>
+        <Box width={5 / 8} px={2}>
             <TextBox></TextBox>
 
         </Box>
-        <Box width={1 / 2} px={2}>
+        <Box width={3 / 8} px={2}>
         
         </Box>
       </Flex>

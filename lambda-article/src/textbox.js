@@ -1,14 +1,15 @@
 import "remirror/styles/all.css";
 
-import { languages } from '@codemirror/language-data';
 import { keymap } from "@codemirror/view";
 import { oneDark } from '@codemirror/theme-one-dark';
 import React, { useCallback } from 'react';
 import { CodeMirrorExtension } from '@remirror/extension-codemirror6';
-import { Remirror, ThemeProvider, useHelpers, useKeymap, useRemirror, useRemirrorContext } from '@remirror/react';
+import { Remirror, ThemeProvider, useHelpers, useKeymap, useRemirror, useRemirrorContext, WysiwygToolbar} from '@remirror/react';
 import {LanguageDescription} from "@codemirror/language";
 
 import { lambdaCalculus } from './lang-lambda/lambdaCalculus';
+import { wysiwygPreset } from 'remirror/extensions';
+import { TableExtension } from '@remirror/extension-react-tables';
 
 
 const lambdaCalculusDescription = LanguageDescription.of({
@@ -21,17 +22,25 @@ const lambdaCalculusDescription = LanguageDescription.of({
 
 function insertLambdaCodemirror(view) {
   view.dispatch(view.state.update(view.state.replaceSelection(LAMBDA), {scrollIntoView: true, userEvent: "input"}))
-  // const transaction = view.state.update({changes: {from: view.state.selection.ranges[0].from, insert: LAMBDA}});
 
-  // view.dispatch(transaction);
   return true
 }
 
-const extensions = () => [new CodeMirrorExtension({ 
-    languages: [lambdaCalculusDescription, ...languages], 
-    extensions: [lambdaCalculus(), oneDark, keymap.of([{ key: 'Ctrl-l', run: insertLambdaCodemirror}])]
-    
-})];
+
+const extensions = () => [
+  new CodeMirrorExtension({
+    languages: [lambdaCalculusDescription],
+    extensions: [
+      lambdaCalculus(),
+      oneDark,
+      keymap.of([
+        { key: "Ctrl-l", run: insertLambdaCodemirror }
+      ]),
+    ],
+  }),
+  new TableExtension(),
+  ...wysiwygPreset()
+];
 
 
 const content = {
@@ -89,12 +98,11 @@ const hooks = [
       ({ state }) => {
         console.log(`Save to backend: ${JSON.stringify(getJSON(state))}`);
 
-        return true; // Prevents any further key handlers from being run.
+        return true;
       },
       [getJSON],
     );
 
-    // "Mod" means platform agnostic modifier key - i.e. Ctrl on Windows, or Cmd on MacOS
     useKeymap('Mod-s', handleSaveShortcut);
   },
   () => {
@@ -103,12 +111,11 @@ const hooks = [
     const handleInsertLambdaShortcut = useCallback(
       () => {
         insertText(LAMBDA);
-        return true; // Prevents any further key handlers from being run.
+        return true;
       },
       [insertText],
     );
 
-    // "Mod" means platform agnostic modifier key - i.e. Ctrl on Windows, or Cmd on MacOS
     useKeymap('Mod-l', handleInsertLambdaShortcut);
   },
 ];
@@ -121,6 +128,7 @@ const TextBox = () => {
       <Remirror manager={manager} initialContent={state} autoRender='end' hooks={hooks}>
         <CreateCodeMirrorButton language='lambdaCalculus' />
         <CreateLambdaButton></CreateLambdaButton>
+        <WysiwygToolbar></WysiwygToolbar>
       </Remirror>
     </ThemeProvider>
   );
