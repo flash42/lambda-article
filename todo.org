@@ -12,10 +12,11 @@
    - [X] Think about useful features for the article
    - [X] Try textbox
    - [X] Integrate remirror
+   - [ ] Add lambda sign to editor as shortcut
    - [ ] Save document as JSON
    - [ ] Render document from JSON
-   - [ ] Add lambda sign to editor as shortcut
    - [ ] Deploy to cdn
+     - https://stackoverflow.com/questions/51949719/is-there-a-way-to-build-a-react-app-in-a-single-html-file
    - [ ] Write README
    - [ ] Apply
    - [ ] Learn LR parsing for Lezer

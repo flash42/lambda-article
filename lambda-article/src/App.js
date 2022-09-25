@@ -1,7 +1,6 @@
 import "./App.css";
-import Codebox from "./codebox";
-import Basic from "./remirror";
 import { Box, Flex } from "rebass";
+import TextBox from './textbox';
 
 
 function App() {
@@ -15,9 +14,8 @@ function App() {
     >
       <Flex mx={50}>
         <Box width={1 / 2} px={2}>
-            {/* <TextBox></TextBox> */}
-            <Codebox></Codebox>
-            <Basic></Basic>
+            <TextBox></TextBox>
+
         </Box>
         <Box width={1 / 2} px={2}>
         
