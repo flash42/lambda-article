@@ -2,7 +2,7 @@ import "remirror/styles/all.css";
 
 import { keymap } from "@codemirror/view";
 import { oneDark } from '@codemirror/theme-one-dark';
-import React, { useCallback } from 'react';
+import React from 'react';
 import { CodeMirrorExtension } from '@remirror/extension-codemirror6';
 import { Remirror, ThemeProvider, useHelpers, useKeymap, useRemirror, useRemirrorContext, WysiwygToolbar} from '@remirror/react';
 import {LanguageDescription} from "@codemirror/language";
@@ -10,7 +10,6 @@ import {LanguageDescription} from "@codemirror/language";
 import { lambdaCalculus } from './lang-lambda/lambdaCalculus';
 import { wysiwygPreset } from 'remirror/extensions';
 import { TableExtension } from '@remirror/extension-react-tables';
-
 
 const lambdaCalculusDescription = LanguageDescription.of({
     name: "lambdaCalculus",
@@ -90,46 +89,59 @@ const CreateLambdaButton = () => {
   );
 };
 
-const hooks = [
-  () => {
+const TextBox = params => {
+  const initialContent = params.loadDocument ? params.loadDocument : content;
+  const { manager, state } = useRemirror({ extensions, initialContent});
+  const useSave = () => {
     const { getJSON } = useHelpers();
 
-    const handleSaveShortcut = useCallback(
-      ({ state }) => {
-        console.log(`Save to backend: ${JSON.stringify(getJSON(state))}`);
+    useKeymap('Mod-s', ({ state }) => {
+      params.setDocument(getJSON(state));
+      return true;
+    });
+  };
+  const useLambda = () => {
+    const insertText = useRemirrorContext().commands.insertText;
 
-        return true;
-      },
-      [getJSON],
-    );
+    useKeymap('Mod-l', () => {
+      insertText(LAMBDA);
+      return true;
+    });
+  };
 
-    useKeymap('Mod-s', handleSaveShortcut);
-  },
-  () => {
-    const { commands } = useRemirrorContext();
-    const { insertText } = commands;
-    const handleInsertLambdaShortcut = useCallback(
-      () => {
-        insertText(LAMBDA);
-        return true;
-      },
-      [insertText],
-    );
-
-    useKeymap('Mod-l', handleInsertLambdaShortcut);
-  },
-];
-
-const TextBox = () => {
-  const { manager, state } = useRemirror({ extensions, content });
-
+  const editable = params.editable == null ? true : params.editable;
+  if (!editable) {
+    console.log("@params: ", params);
+    // TODO replace contents https://remirror.io/docs/faq/
+  }
   return (
     <ThemeProvider>
-      <Remirror manager={manager} initialContent={state} autoRender='end' hooks={hooks}>
-        <CreateCodeMirrorButton language='lambdaCalculus' />
-        <CreateLambdaButton></CreateLambdaButton>
-        <WysiwygToolbar></WysiwygToolbar>
-      </Remirror>
+      {editable ? (
+        <Remirror
+          manager={manager}
+          initialContent={state}
+          autoRender="end"
+          hooks={[useLambda, useSave]}
+        >
+          {editable ? (
+            <CreateCodeMirrorButton language="lambdaCalculus" />
+          ) : null}
+          {editable ? <CreateLambdaButton></CreateLambdaButton> : null}
+          {editable ? <WysiwygToolbar></WysiwygToolbar> : null}
+        </Remirror>
+      ) : (
+        // TODO try to adapt for codeMirror node: https://github.com/jamischarles/codemirror-server-render/blob/main/index.js
+        // <RemirrorRenderer
+        //   json={ initialContent }
+        // />
+       <Remirror
+          editable={false}
+          manager={manager}
+          initialContent={state}
+          autoRender="end"
+        >
+        </Remirror>
+      )}
     </ThemeProvider>
   );
 };
