@@ -1,10 +1,16 @@
 import { useState } from "react";
-import { Box, Flex } from "rebass";
+import { Box, Flex, Text } from "rebass";
 import "./App.css";
-import TextBox from "./textbox";
+import Editor from "./editor/editor";
+import Renderer from "./editor/renderer";
 
 function App() {
-  const [document, setDocument] = useState(null);
+  const initialContent = {
+    type: "doc",
+    content: [],
+  };
+  const [document, setDocument] = useState(initialContent);
+  
   return (
     <Box
       sx={{
@@ -13,11 +19,12 @@ function App() {
     >
       <Flex mx={50}>
         <Box width={4 / 8} px={2}>
-          <TextBox setDocument={setDocument}></TextBox>
+          <Editor setDocument={setDocument} initialContent={initialContent}></Editor>
         </Box>
         <Box width={1 / 15}></Box>
         <Box width={3 / 8} px={2}>
-          <TextBox loadDocument={document} editable={false}></TextBox>
+          <Text>Preview</Text>
+          <Renderer document={document}></Renderer>
         </Box>
       </Flex>
     </Box>

@@ -1,5 +1,6 @@
 import {parser} from "./parser"
 import {continuedIndent, indentNodeProp, foldNodeProp, foldInside, LRLanguage, LanguageSupport} from "@codemirror/language"
+import {LanguageDescription} from "@codemirror/language";
 
 export const lambdaCalculusLanguage = LRLanguage.define({
   parser: parser.configure({
@@ -22,3 +23,11 @@ export const lambdaCalculusLanguage = LRLanguage.define({
 export function lambdaCalculus() {
   return new LanguageSupport(lambdaCalculusLanguage)
 }
+
+export const lambdaCalculusDescription = LanguageDescription.of({
+  name: "lambdaCalculus",
+  extensions: ["lc"],
+  load() {
+    return Promise.resolve(lambdaCalculus());
+  }
+})
