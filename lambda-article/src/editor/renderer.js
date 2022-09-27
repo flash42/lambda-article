@@ -19,12 +19,14 @@ export const CodeMirrorBlock = (props) => {
   if (!content) {
     return null;
   }
-  const a = renderString(content[0].text, oneDarkHighlightStyle, oneDarkTheme, {
-    langProvider: lambdaCalculus().language,
-  }).code;
-  const innerHTML = { __html: a };
+  const innerHTML = {
+    __html: renderString(content[0].text, oneDarkHighlightStyle, oneDarkTheme, {
+      langProvider: lambdaCalculus().language,
+    }).code,
+  };
   return <div dangerouslySetInnerHTML={innerHTML} />;
 };
+
 const defaultTypeMap = {
   blockquote: "blockquote",
   bulletList: "ul",
