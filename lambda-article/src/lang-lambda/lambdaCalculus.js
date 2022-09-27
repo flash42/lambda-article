@@ -19,7 +19,6 @@ export const lambdaCalculusLanguage = LRLanguage.define({
   }
 })
 
-/// JSON language support.
 export function lambdaCalculus() {
   return new LanguageSupport(lambdaCalculusLanguage)
 }

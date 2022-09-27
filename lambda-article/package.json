@@ -26,7 +26,8 @@
     "react-scripts": "5.0.1",
     "rebass": "^4.0.7",
     "remirror": "^2.0.5",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "@codemirror/rangeset": "^0.19.9"
   },
   "devDependencies": {
     "@lezer/generator": "^1.0.0"

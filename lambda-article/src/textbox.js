@@ -10,6 +10,10 @@ import {LanguageDescription} from "@codemirror/language";
 import { lambdaCalculus } from './lang-lambda/lambdaCalculus';
 import { wysiwygPreset } from 'remirror/extensions';
 import { TableExtension } from '@remirror/extension-react-tables';
+import { RemirrorRenderer } from "@remirror/react";
+import { renderString } from './render-codemirror'
+import {oneDarkHighlightStyle, oneDarkTheme } from '@codemirror/theme-one-dark'
+import { Callout, CodeBlock, TextHandler, createIFrameHandler, Heading, Doc } from '@remirror/react';
 
 const lambdaCalculusDescription = LanguageDescription.of({
     name: "lambdaCalculus",
@@ -89,6 +93,36 @@ const CreateLambdaButton = () => {
   );
 };
 
+
+export const CodeMirrorBlock = (props) => {
+  const content = props.node.content;
+  console.log('@content', content);
+  if (!content) {
+    return null;
+  }
+  const a = renderString(content[0].text, oneDarkHighlightStyle, oneDarkTheme, {langProvider: lambdaCalculus().language}).code;
+  console.log("@a: ", a);
+  const innerHTML = {__html: a}
+  return <div dangerouslySetInnerHTML={innerHTML} />;
+};
+const defaultTypeMap = {
+  blockquote: 'blockquote',
+  bulletList: 'ul',
+  callout: Callout,
+  doc: Doc,
+  heading: Heading,
+  paragraph: 'p',
+  horizontalRule: 'hr',
+  iframe: createIFrameHandler(),
+  image: 'img',
+  hardBreak: 'br',
+  codeBlock: CodeBlock,
+  orderedList: 'ol',
+  text: TextHandler,
+  codeMirror: CodeMirrorBlock
+};
+
+
 const TextBox = params => {
   const initialContent = params.loadDocument ? params.loadDocument : content;
   const { manager, state } = useRemirror({ extensions, initialContent});
@@ -131,16 +165,17 @@ const TextBox = params => {
         </Remirror>
       ) : (
         // TODO try to adapt for codeMirror node: https://github.com/jamischarles/codemirror-server-render/blob/main/index.js
-        // <RemirrorRenderer
-        //   json={ initialContent }
-        // />
-       <Remirror
-          editable={false}
-          manager={manager}
-          initialContent={state}
-          autoRender="end"
-        >
-        </Remirror>
+        <RemirrorRenderer
+          json={ initialContent }
+          typeMap={defaultTypeMap}
+        />
+      //  <Remirror
+      //     editable={false}
+      //     manager={manager}
+      //     initialContent={state}
+      //     autoRender="end"
+      //   >
+      //   </Remirror>
       )}
     </ThemeProvider>
   );
