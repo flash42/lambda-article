@@ -2,7 +2,7 @@ import "remirror/styles/all.css";
 
 import { keymap } from "@codemirror/view";
 import { oneDark } from "@codemirror/theme-one-dark";
-import React from "react";
+import React, {useCallback} from "react";
 import { CodeMirrorExtension } from "@remirror/extension-codemirror6";
 import {
   Remirror,
@@ -20,7 +20,6 @@ import {
 } from "../lang-lambda/lambdaCalculus";
 import { wysiwygPreset } from "remirror/extensions";
 import { TableExtension } from "@remirror/extension-react-tables";
-
 
 
 const LAMBDA = "λ";
@@ -81,15 +80,34 @@ const CreateLambdaButton = () => {
   );
 };
 
+const CreateSaveButton = (params) => {
+  const { setDocument } = params;
+  const { getJSON } = useHelpers();
+  const onSave = useCallback(({ state }) => {
+      setDocument(getJSON(state))
+      return true;
+    },
+    [getJSON, setDocument]
+  );
+  return (
+    <button
+      onMouseDown={(event) => event.preventDefault()}
+      onClick={onSave}
+    >
+    Save
+    </button>
+  );
+};
+
 
 const Editor = (params) => {
-  const { initialContent } = params;
+  const { initialContent, setDocument } = params;
   const { manager, state } = useRemirror({ extensions, initialContent });
   const useSave = () => {
     const { getJSON } = useHelpers();
 
     useKeymap("Mod-s", ({ state }) => {
-      params.setDocument(getJSON(state));
+      setDocument(getJSON(state));
       return true;
     });
   };
@@ -110,6 +128,7 @@ const Editor = (params) => {
         autoRender="end"
         hooks={[useLambda, useSave]}
       >
+        <CreateSaveButton setDocument={setDocument}></CreateSaveButton>
         <CreateCodeMirrorButton language="lambdaCalculus" />
         <CreateLambdaButton></CreateLambdaButton>
         <WysiwygToolbar></WysiwygToolbar>
