@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box, Flex, Text } from "rebass";
+import { Box, Flex, Heading } from "rebass";
 import "./App.css";
 import Editor from "./editor/editor";
 import Renderer from "./editor/renderer";
@@ -10,20 +10,21 @@ function App() {
     content: [],
   };
   const [document, setDocument] = useState(initialContent);
-  
   return (
     <Box
       sx={{
         px: 3,
       }}
     >
-      <Flex mx={50}>
-        <Box width={4 / 8} px={2}>
-          <Editor setDocument={setDocument} initialContent={initialContent}></Editor>
+      <Flex mx={30}>
+        <Box width={5 / 8} px={2}>
+          <Editor
+            setDocument={setDocument}
+            initialContent={initialContent}
+          ></Editor>
         </Box>
-        <Box width={1 / 15}></Box>
-        <Box width={3 / 8} px={2}>
-          <Text>Preview</Text>
+        <Box width={3 / 8} mx={80}>
+          <Heading>Preview</Heading>
           <Renderer document={document}></Renderer>
         </Box>
       </Flex>
