@@ -1,16 +1,16 @@
 * Draft task list
-   - [ ] Render document from JSON
-     - [ ] create updatable readonly component
-     - [ ] document how it can be done with react-renderer
-   - [ ] Cleanup code
-   - [ ] Create screencast
-   - [ ] Write README
    - [ ] Apply
    - [ ] Learn LR parsing for Lezer
    - [ ] Learn resolving shift-reduce issues in Lezer
    - [ ] Try out JavaScript interpreter
    - [ ] Read hooks faq: https://reactjs.org/docs/hooks-faq.html#how-to-avoid-passing-callbacks-down
    - [ ] Figure out publication workflow
+   - [X] Create screencast
+   - [X] Write README
+   - [X] Cleanup code
+   - [X] Render document from JSON
+     - [X] create updatable readonly component
+     - [X] document how it can be done with react-renderer
    - [X] Save document as JSON
    - [X] Arrows should come out of Codemirror
    - [X] Create an empty react app
