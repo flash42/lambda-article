@@ -1,15 +1,11 @@
-# Goal
+# POC blog editor and renderer
 
-This repository is for personal practice and amusment. I want to learn more about lambda calculus and also about CodeMirror coding editor. Also my goals is to explore Ghost editor.
+I've integrated [Remirror](https://codemirror.net/) and [CodeMirror](https://codemirror.net/) and written an (incomplete) lambda-calculus language extension to CodeMirror. With these tools I've modelled an article editing workflow (no backend).
 
-# Improve an article written on a Lambda calculus interpreter
+Remirror is a wrapper around ProseMirror which can embed CodeMirror editor blocks. These editor libraries are easy to extend with menus and shortcuts which I've explored a bit.
 
-link: https://tadeuzagallo.com/blog/writing-a-lambda-calculus-interpreter-in-javascript/
+ProseMirror can serialize its contents as a JSON document. Remirror provides an incomplete Render component which can render the JSON format. I've extended this with a CodeMirror renderer based on an [open source project](https://github.com/jamischarles/codemirror-server-render).
 
-What can I learn from "improving" the article?
+The end result is a two pane editor where in one pane we can edit code and on save. In the other pane we can see the preview rendered based on the exported document state.
 
-- Implement CodeMirror lexer
-- Explore the Lambda calculus -> JavaScript interpreter
-- Deeper understanding of the contents
-- Polish my React skills
-- Typography of the article could be improved by porting to Ghost, so I can learn about Ghost's capabilities
+![App screenshot](https://github.com/flash42/lambda-article/blob/master/screenshot.png)
